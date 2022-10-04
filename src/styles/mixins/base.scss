@@ -1,0 +1,119 @@
+@mixin make-container() {
+    margin: 0 15px;
+
+    @each $breakpoint in map-keys($grid-breakpoints) {
+        @media (min-width: map-get($grid-breakpoints, $breakpoint)) {
+            margin: 0 calc(50vw - #{map-get($container-max-widths, $breakpoint)});
+        }
+    }
+}
+
+@mixin media($downup, $media) {
+    @each $size, $resolution in $grid-breakpoints {
+        @if $media == $size {
+            @if $downup == up {
+                @media (min-width: $resolution) {
+                    @content;
+                }
+            }
+            @else {
+                @media (max-width: $resolution) {
+                    @content;
+                }
+            }
+        }
+    }
+}
+
+@mixin font($size: main, $weight: 400) {
+    font-weight: map-get($font-weight, $weight);
+    font-size: map-get($font-size, $size);
+    font-family: $font-family;
+}
+
+@mixin btn($bg: false, $bs: false, $br: false) {
+    @if ($bg) {
+        background: map-get($background, $bg);
+    }
+    @if ($bs) {
+        box-shadow: map-get($box-shadow, $bs);
+    }
+    @if ($br) {
+        border-radius: map-get($border-radius, $br);
+    }
+}
+
+@mixin border($color) {
+    border-bottom: 2px solid $color;
+}
+
+@mixin transition($properties, $duration: 0.3s) {
+    $transition: ();
+
+    @each $property in $properties {
+        $transition: append($transition, ($property $duration), $separator: comma);
+    }
+    transition: $transition;
+}
+
+@mixin link-hover {
+    @include transition(border-color);
+    border-bottom: 2px solid transparent;
+
+    &:hover,
+    &:focus {
+        border-bottom-color: cl(text);
+    }
+}
+
+@mixin list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+@mixin visually-hidden() {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+    clip: rect(0, 0, 0, 0) !important;
+    stroke: transparent !important;
+}
+
+@mixin flex-helper($justify-content: false) {
+    display: flex;
+    align-items: center;
+    @if ($justify-content) {
+        justify-content: $justify-content;
+    }
+}
+
+@mixin before() {
+    &::before {
+        content: '';
+        display: flex;
+        position: absolute;
+        @content;
+    }
+}
+
+@mixin after() {
+    &::after {
+        content: '';
+        display: flex;
+        position: absolute;
+        @content;
+    }
+}
+
+@mixin absolute-center() {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

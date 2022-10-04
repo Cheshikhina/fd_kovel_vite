@@ -1,0 +1,81 @@
+$colors: (
+    'black': #000000,
+    'white': #FFFFFF,
+    'header': #F0F5FB,
+    'point': #46CB72,
+    'tabs-active': #59AAF1,
+    'border-card': #ECEEF7,
+    'red': #ff4b4b,
+    'orange': #F58656, 
+    'input': #222222
+);
+
+:root{
+    @if $colors {
+      @each $key, $value in $colors {
+        --color-#{$key} : #{$value};
+        --color-#{$key}--rgb : #{HexToRGB($value)};
+      }
+    }
+  }
+
+$grid-breakpoints: (
+    sm: 575.98px,
+    md: 767.98px,
+    lg: 991.98px,
+    xl: 1291.98px
+);
+
+$container-max-widths: (
+    sm: 273px,
+    md: 369px,
+    lg: 481px,
+    xl: 580px
+);
+
+$font-family: Montserrat, Arial, sans-serif;
+
+$font-size: (
+    main: 16px,
+    small: 12px,
+    title: 48px,
+    subtitle: 24px,
+    input: 14px,
+    btn: 18px,
+);
+
+$font-weight: (
+    300: 300,
+    main: 400,
+    600: 600,
+    700: 700
+);
+
+$bg-tabs: linear-gradient(0deg, #ECEEF6, #ECEEF6), #59AAF1;
+$bg-cart: linear-gradient(287.74deg, #F58656 8.52%, #FE5626 92.72%), linear-gradient(180deg, #FE5626 0%, #F23F0E 100%), #59AAF1;
+$bg-label: linear-gradient(116.88deg, #FE3326 -4.28%, #F26E0E 112.69%), #59AAF1;
+$background: (
+    btn: linear-gradient(287.74deg, #F58656 8.52%, #FE5626 92.72%),
+    tabs: $bg-tabs,
+    cart: $bg-cart,
+    label: $bg-label,
+    insta: linear-gradient(45.04deg, #FD9924 -51.05%, #F65B16 134.89%)
+);
+
+$bs-insta: 0px 70px 90px rgba(253, 55, 36, 0.2), 0px 35px 50px rgba(253, 55, 36, 0.2), 0px 20px 25px rgba(253, 55, 36, 0.2);
+
+$box-shadow: (
+    btn: 0px 4px 8px rgba(205, 169, 41, 0.26),
+    label: 0px 4px 8px rgba(205, 71, 41, 0.26),
+    insta: $bs-insta,
+    submit: 0px 4px 8px rgba(205, 169, 41, 0.26),
+);
+
+$border-radius: (
+    btn: 59px,
+    tabs: 45px,
+    label: 3px,
+    insta: 15px,
+    input: 57px,
+    rounded: 50%,
+);

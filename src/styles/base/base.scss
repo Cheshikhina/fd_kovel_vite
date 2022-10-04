@@ -1,0 +1,66 @@
+body {
+    font-family: $font-family;
+    background-color: cl('white');
+    color: cl('black');
+    -webkit-font-smoothing: antialiased;
+
+    @include font();
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.app-root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+
+    main {
+        position: relative;
+        flex: 1 0 auto;
+        min-height: 1px;
+        margin-top: -100px;
+    }
+
+    header,
+    footer {
+        flex-shrink: 0;
+    }
+}
+
+picture,
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.visually-hidden {
+    @include visually-hidden;
+}
+
+button {
+    padding: 0;
+    font-family: inherit;
+    background-color: transparent;
+    border-width: 0;
+    cursor: pointer;
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+b,
+strong {
+    font-weight: map-get($font-weight, 700);
+}
+
+a {
+    color: cl('black');
+    text-decoration: none;
+}
